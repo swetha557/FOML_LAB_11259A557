@@ -1,9 +1,0 @@
-import pandas as pd                               # pandas = tables
-data = pd.read_csv("titanic.csv")                  # load the CSV file into a table called data
-data = data[["survived","pclass","sex","age","fare","embarked"]].copy()  # keep only the useful columns
-print(data.isnull().sum())                        # count the empty cells in every column
-data["age"] = data["age"].fillna(data["age"].median())  # fill empty NUMBER cells with the median
-data["embarked"] = data["embarked"].fillna("S")   # fill empty WORD cells with the most common word
-data = pd.get_dummies(data, columns=["sex","embarked"], dtype=int)  # turn each word column into 0/1 columns
-print(data.head())                                # show the first 5 rows of the clean table
-print("Any blanks left?", data.isnull().values.any())  # False means the table is 
