@@ -1,0 +1,9 @@
+new = pd.DataFrame([{"pclass":2,"sex":"female","age":27,"fare":30,"embarked":"C"}])  # one new row (no answer column)
+new = pd.get_dummies(new, columns=["sex","embarked"], dtype=int)  # encode it exactly like the training table
+new = new.reindex(columns=data.drop("survived", axis=1).columns, fill_value=0)  # give it the same columns as the clean table
+print(new)       
+
+
+
+  pclass  age  fare  sex_female  sex_male  embarked_C  embarked_Q  embarked_S
+0       2   27    30           1         0           1           0           0
