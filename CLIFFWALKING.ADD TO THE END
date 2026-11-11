@@ -1,0 +1,11 @@
+goal = 47                                         # the goal square
+wins = 0                                          # counter for won games
+for game_no in range(100):                        # play 100 test games
+    state, _ = game.reset()                       # start again
+    for step in range(100):                       # at most 100 moves per game
+        state, reward, end, cut, _ = game.step(np.argmax(Q[state]))  # always use the best move
+        if end or cut:                            # game over?
+            break                                 # stop this game
+    if state == goal:                             # did we finish on the goal?
+        wins += 1                                 # count a win
+print("Success rate:", wins, "out of 100 games won")  # show the result
